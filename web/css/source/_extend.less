@@ -1,0 +1,55 @@
+// Import variables globally
+@import "_variables_extend";
+
+// Mobile-first / Common styles
+& when (@media-common = true) {
+  @import "vendor/bootstrap/3.3/bootstrap";
+  @import "vendor/font-awesome/5.0/fontawesome";
+  @import "_common/_header";
+  @import "_common/_footer";
+  @import "_common/_cms";
+  @import "_common/_catalog";
+}
+
+// Mobile-specific styles
+& when (@media-target = 'mobile') {
+  // All screen sizes (< 768px)
+  @media only screen and (max-width: (@screen__m - 1)) {
+    @import "_mobile/_header";
+  }
+
+  // XXS (>= 0, < 320px)
+  @media only screen and (min-width: 0px) and (max-width: (@screen__xxs - 1)) {
+    @import "_mobile/_xxs/_header";
+  }
+
+  // XS (>= 320px, < 480px)
+  @media only screen and (min-width: @screen__xxs) and (max-width: (@screen__xs - 1)) {
+    @import "_mobile/_xs/_header";
+  }
+
+  // S (>= 480px, < 640px)
+  @media only screen and (min-width: @screen__xs) and (max-width: (@screen__s - 1)) {
+    @import "_mobile/_s/_header";
+  }
+
+  // M (>= 640px, < 768px)
+  @media only screen and (min-width: @screen__s) and (max-width: (@screen__m - 1)) {
+    @import "_mobile/_m/_header";
+  }
+}
+
+// Tablet (>= 768px)
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  @import "_tablet/_header";
+}
+
+// Desktop (>= 1024px)
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+  @import "_desktop/_header";
+}
+
+// Large (>= 1440px)
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+  @import "_highres/_header";
+}
